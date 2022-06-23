@@ -9,3 +9,83 @@
 :root {
   --bg-color: white;
 }
+
+body {
+  background-color: gray;
+}
+
+header {
+  text-align: center;
+  margin: 1rem;
+  margin-bottom: 5rem;
+
+  font-size: 7rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15rem;
+}
+
+#buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+#buttons button {
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 3rem;
+  border: none;
+  outline: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+#buttons button:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+  outline: 2px solid black;
+  transition: all 0.2s;
+}
+
+#buttons #colorWheel {
+  background-color: gray;
+  align-self: center;
+  height: 100px;
+  width: 100px;
+  border: none;
+  margin-bottom: -1rem;
+}
+
+#buttons #colorWheel::-webkit-color-swatch {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#buttons div {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: -1rem;
+}
+
+#sketchArea {
+  background-color: white;
+  height: 500px;
+  width: 500px;
+  outline: 1px solid black;
+  box-shadow: 0 0 20px black;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+#sketchArea.active div {
+  outline: 1px solid black;
+}
