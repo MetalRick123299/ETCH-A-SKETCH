@@ -1,6 +1,6 @@
 const sketchArea = document.querySelector("#sketchArea");
-const gridItem = document.querySelectorAll(".grid-item");
 const colorWheel = document.querySelector("#colorWheel");
+const gridLabel = document.querySelector("#gridLabel");
 
 const colorMode = document.querySelector("#colorMode");
 const rainbowMode = document.querySelector("#rainbowMode");
@@ -30,13 +30,16 @@ function activeButton(mode) {
   newButton.classList.add("active");
 }
 
-colorWheel.oninput = () => {
+colorWheel.oninput = () =>
   colorMode.setAttribute("style", `background-color: ${colorWheel.value};`);
-};
 colorMode.onclick = () => changeMode("colorMode");
 rainbowMode.onclick = () => changeMode("rainbowMode");
 eraser.onclick = () => changeMode("eraserMode");
 clear.onclick = () => clearGrid();
+toggleGrid.onclick = () =>
+  sketchArea.classList.contains("active")
+    ? sketchArea.classList.remove("active")
+    : sketchArea.classList.add("active");
 gridSlider.onchange = (e) => changeGrid(e.target.value);
 
 const changeColor = (e) => {
@@ -54,11 +57,29 @@ const changeColor = (e) => {
   console.log(color);
 };
 
-gridItem.forEach((item) => {
-  item.addEventListener("mouseover", changeColor);
-  item.addEventListener("mousedown", changeColor);
-});
-
 const changeGrid = (value) => {
   sketchArea.innerHTML = "";
+  gridLabel.textContent = `${value} x ${value}`;
+
+  sketchArea.setAttribute(
+    "style",
+    `grid-template-columns: repeat(${value}, 1fr); grid-template-rows: repeat(${value}, 1fr);`
+  );
+
+  for (let i = 0; i < value ** 2; i++) {
+    const gridDiv = document.createElement("div");
+    gridDiv.classList.add("grid-item");
+    gridDiv.addEventListener("mouseover", changeColor);
+    gridDiv.addEventListener("mousedown", changeColor);
+    sketchArea.appendChild(gridDiv);
+  }
 };
+
+function clearGrid() {
+  const gridItem = document.querySelectorAll(".grid-item");
+  gridItem.forEach((item) => {
+    item.removeAttribute("style");
+  });
+}
+
+changeGrid(32);
