@@ -7,11 +7,11 @@
 }
 
 :root {
-  --bg-color: white;
+  --bg-color: gray;
 }
 
 body {
-  background-color: gray;
+  background-color: var(--bg-color);
 }
 
 header {
@@ -55,7 +55,7 @@ main {
 }
 
 #buttons #colorWheel {
-  background-color: gray;
+  background-color: var(--bg-color);
   align-self: center;
   height: 100px;
   width: 100px;
@@ -66,6 +66,7 @@ main {
 #buttons #colorWheel::-webkit-color-swatch {
   border-radius: 50%;
   cursor: pointer;
+  outline: 1px solid black;
 }
 
 #buttons div {
@@ -75,7 +76,6 @@ main {
 }
 
 #sketchArea {
-  background-color: white;
   height: 500px;
   width: 500px;
   outline: 1px solid black;
@@ -88,4 +88,13 @@ main {
 
 #sketchArea.active div {
   outline: 1px solid black;
+}
+
+.grid-item {
+  background-color: #ffffff;
+  user-select: none;
+}
+
+button.active {
+  background-color: rgb(166, 166, 166);
 }
